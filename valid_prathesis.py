@@ -1,4 +1,4 @@
-class Solution(object):
+class IsValidSolution(object):
     def isValid(self, s):
         """
         :type s: str
@@ -12,13 +12,12 @@ class Solution(object):
                 
                 if pranth in pranth_dict:
                     track_closing.append(pranth_dict[pranth])
-                if pranth not in pranth_dict:
-                    print(track_closing[0])
-                    if pranth == track_closing[0]:
-                        track_closing.pop()
-                    else:
-                        return False
-                print(track_closing)
+
+                elif len(track_closing) > 0 and track_closing[len(track_closing) - 1] == pranth:
+                    track_closing.pop()
+                else:
+                    # this is a faulty string "{", "{@WEQDS}}" etc
+                    return False
             if len(track_closing) == 0:
                 return True
         return False
